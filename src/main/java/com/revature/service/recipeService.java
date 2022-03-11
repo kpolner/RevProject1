@@ -50,4 +50,8 @@ public class recipeService {
     }
 
     public recipe findRecipeById(int id) { return recipeRepository.findById(id); }
+
+    public recipe findFastestRecipe(String foodType) {
+        return recipeRepository.findMinimumCookTime(foodType);
+    }
 }

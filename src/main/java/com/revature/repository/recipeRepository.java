@@ -32,6 +32,9 @@ public interface recipeRepository extends JpaRepository<recipe, Integer> {
     @Query(value = "SELECT top 3 * FROM recipe WHERE food_type = ?1 ORDER BY rating DESC", nativeQuery = true)
     List<recipe> findTop3ByRating(String food);
 
+    @Query("FROM recipe where cookTime = (SELECT min(cookTime) from recipe WHERE foodType = ?1)")
+    recipe findMinimumCookTime(String food_type);
+
     @Query("FROM recipe WHERE id = ?1")
     recipe findById(int Id);
 }

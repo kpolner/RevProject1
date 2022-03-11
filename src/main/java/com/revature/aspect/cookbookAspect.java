@@ -20,20 +20,5 @@ public class cookbookAspect {
     public void BeforeGettingRecipe(JoinPoint joinPoint) {
         logger.info(joinPoint.getSignature());
     }
-
-    @Before("execution(* update*(..))")
-    public void BeforeUpdating(JoinPoint joinPoint) {
-        logger.info(joinPoint.getSignature());
-    }
-
-    @Before("execution(* delete*(..))")
-    public void BeforeDeleting(JoinPoint joinPoint) {
-        logger.info(joinPoint.getSignature());
-    }
-
-    @Before("execution(* post*(..))")
-    public void BeforePosting(JoinPoint joinPoint) {
-        logger.info(joinPoint.getSignature());
-    }
 }
 

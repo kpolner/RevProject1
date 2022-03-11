@@ -55,6 +55,11 @@ public class recipeController {
         return recipeService.findTop3ByFoodType(food);
     }
 
+    @GetMapping("fastest/{foodType}")
+    public recipe getFastestCookTime(@PathVariable String foodType)
+    {
+        return recipeService.findFastestRecipe(foodType);
+    }
     @GetMapping("id/{id}")
     public recipe getRecipeById(@PathVariable int id) {return recipeService.findRecipeById(id);}
 
