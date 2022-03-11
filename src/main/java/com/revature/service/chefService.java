@@ -1,5 +1,6 @@
 package com.revature.service;
 import com.revature.model.chef;
+import com.revature.model.recipe;
 import com.revature.repository.chefRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -31,7 +32,8 @@ public class chefService {
     public List<chef> findAllChefsByTag(String tag){
         return chefRepository.findAllByTag(tag);
     }
-    public chef deleteChef(chef chef) {
-        return chefRepository.deleteBy(chef);
+    public chef findChefById(int id) { return chefRepository.findById(id); }
+    public void deleteChef(int id) {
+        chefRepository.deleteById(id);
     }
 }

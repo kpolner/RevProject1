@@ -3,6 +3,8 @@ import com.revature.model.chef;
 import com.revature.service.recipeService;
 import com.revature.model.recipe;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -48,23 +50,62 @@ public class recipeController {
         return recipeService.findAllRecipesByChef(chef);
     }
 
-    @DeleteMapping("recipe/{recipe}")
-    public recipe deleteRecipe(@PathVariable recipe recipe) {
-        return recipeService.deleteRecipe(recipe);
+    @GetMapping("top3/{food}")
+    public List<recipe> getTop3(@PathVariable String food) {
+        return recipeService.findTop3ByFoodType(food);
     }
 
-    @GetMapping("top3/{foodType}")
-    public List<recipe> getTop3(@PathVariable String foodType) {
-        return recipeService.findTop3ByFoodType(foodType);
+    @GetMapping("id/{id}")
+    public recipe getRecipeById(@PathVariable int id) {return recipeService.findRecipeById(id);}
+
+    @PatchMapping("updateName/{id}/{recipeName}")
+    public void updateName(@PathVariable int id, @PathVariable String recipeName) {
+        recipe recipe = recipeService.findRecipeById(id);
+        recipe.setRecipeName(recipeName);
+        recipeService.saveRecipe(recipe);
     }
-    @GetMapping("tag/{tag}")
-    public List<recipe> getRecipeByChefTag(@PathVariable String tag) {
-        return recipeService.findAllRecipesByChefTag(tag);
+    @PatchMapping("updateFoodType/{id}/{foodType}")
+    public void updateFoodType(@PathVariable int id, @PathVariable String foodType) {
+        recipe recipe = recipeService.findRecipeById(id);
+        recipe.setFoodType(foodType);
+        recipeService.saveRecipe(recipe);
+    }
+    @PatchMapping("updateDifficulty/{id}/{difficulty}")
+    public void updateDifficulty(@PathVariable int id, @PathVariable String difficulty) {
+        recipe recipe = recipeService.findRecipeById(id);
+        recipe.setDifficulty(difficulty);
+        recipeService.saveRecipe(recipe);
+    }
+    @PatchMapping("updateRating/{id}/{rating}")
+    public void updateRating(@PathVariable int id, @PathVariable double rating) {
+        recipe recipe = recipeService.findRecipeById(id);
+        recipe.setRating(rating);
+        recipeService.saveRecipe(recipe);
+    }
+    @PatchMapping("updateCookTime/{id}/{cookTime}")
+    public void updateCookTime(@PathVariable int id, @PathVariable int cookTime) {
+        recipe recipe = recipeService.findRecipeById(id);
+        recipe.setCookTime(cookTime);
+        recipeService.saveRecipe(recipe);
+    }
+    @PatchMapping("updateLink/{id}/{link}")
+    public void updateLink(@PathVariable int id, @PathVariable String link) {
+        recipe recipe = recipeService.findRecipeById(id);
+        recipe.setLink(link);
+        recipeService.saveRecipe(recipe);
+    }
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Long> deleteRecipe(@PathVariable int id) {
+        recipe recipe = recipeService.findRecipeById(id);
+        if(recipe == null)
+        {
+            System.out.println("No recipe by this id");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        else {
+            System.out.println(recipeService.findRecipeById(id).getRecipeName() + " deleted!");
+            recipeService.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
     }
 }
-    /*you're likely to also need
-    a delete mapping
-    @DeleteMapping
-    a patch mapping
-    @PatchMapping
-     */

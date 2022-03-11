@@ -25,6 +25,7 @@ public class recipeService {
         return recipeRepository.findByName(name);
     }
 
+
     public recipe saveRecipe(recipe recipe) {
         return recipeRepository.save(recipe);
     }
@@ -39,15 +40,14 @@ public class recipeService {
     public List<recipe> findAllRecipesByChef(String chef) {
         return recipeRepository.findAllByChef(chef);
     }
-    public List<recipe> findTop3ByFoodType(String foodType) {
-        return recipeRepository.findTop3ByRating(foodType);
+
+    public List<recipe> findTop3ByFoodType(String food) {
+        return recipeRepository.findTop3ByRating(food);
     }
 
-    public recipe deleteRecipe(recipe recipe) {
-        return recipeRepository.deleteBy(recipe);
+    public void deleteById(int id) {
+        recipeRepository.deleteById(id);
     }
 
-    public List<recipe> findAllRecipesByChefTag(String tag) {
-        return recipeRepository.findAllByChefTag(tag);
-    }
+    public recipe findRecipeById(int id) { return recipeRepository.findById(id); }
 }

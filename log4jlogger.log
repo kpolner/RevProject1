@@ -1,0 +1,2 @@
+2022-03-10 23:12:40 INFO  cookbookAspect:16 - List com.revature.controller.chefController.getChefs()
+2022-03-10 23:24:13 INFO  cookbookAspect:21 - List com.revature.controller.recipeController.getRecipes()

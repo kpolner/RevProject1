@@ -1,5 +1,4 @@
-Menuing
-Figure out how to do spring
-patchmapping to update recipes and chefs
-exception handling
-postman
+patch mapping
+delete mapping
+logging (aop)
+clone to vm for proper ip
