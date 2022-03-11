@@ -35,7 +35,7 @@ public class recipeService {
     }
     public List<recipe> findAllRecipesByCookTime(int cookTime)
     {
-        return recipeRepository.findAllByCookTimeBetween(cookTime-10, cookTime+10);
+        return recipeRepository.findAllByCookTimeBetween(cookTime-15, cookTime+15);
     }
     public List<recipe> findAllRecipesByChef(String chef) {
         return recipeRepository.findAllByChef(chef);

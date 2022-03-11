@@ -20,7 +20,7 @@ public interface recipeRepository extends JpaRepository<recipe, Integer> {
     @Query("FROM recipe WHERE foodType = ?1")
     List<recipe> findAllByFoodType(String foodType);
 
-    @Query("FROM recipe")
+    @Query("FROM recipe WHERE cookTime >= ?1 AND cookTime <= ?2 ")
     List<recipe> findAllByCookTimeBetween(int cookTimeLess, int cookTimePlus);
 
     @Query("FROM recipe WHERE chefObject = ?1")
