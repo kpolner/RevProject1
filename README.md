@@ -4,10 +4,15 @@
 WEB API designed to keep track of recipes and chef information to help you cook in your spare time
 
 # Technologies Used
+
+* Servlets
+* Spring Framework
 * Spring Boot
 * Spring ORM
+* Spring AOP
+* Spring Data
 * Hibernate
-* SQL Databases
+* Azure SQL Databases
 * Java programming language
 
 # Features
